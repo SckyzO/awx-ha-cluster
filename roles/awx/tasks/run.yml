@@ -1,0 +1,13 @@
+---
+- name: Start all AWX containers | config changes
+  docker_compose:
+    project_name: "awx"
+    project_src: "{{ awx_compose_dir }}/"
+    restarted: yes
+  when: config_state_primary.changed or
+        launcher_state_primary.changed 
+
+- name: Start all AWX containers | docker-compose changes
+  docker_compose:
+    project_name: "awx"
+    project_src: "{{ awx_compose_dir }}/"

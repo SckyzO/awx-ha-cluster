@@ -1,0 +1,43 @@
+### Playbook default settings
+#node: "awx"
+compose_dir: "/opt"
+awx_compose_dir: "{{ compose_dir }}/awx"
+isolated_compose_dir: "{{ compose_dir }}/awx-isolated"
+postgres_compose_dir: "{{ compose_dir }}/postgres"
+webhook_compose_dir: "{{ compose_dir}}/webhook"
+external_database: "no"
+enable_webhooks: "no"
+github_secret: "webhook_secret"
+
+### Docker default settings
+#docker_registry: "dockerhost"
+docker_registry_namespace: "ansible"
+awx_image: "awx"
+awx_version: "15.1.0"
+awx_docker_actual_image: "{{ docker_registry_namespace }}/{{ awx_image }}:{{ awx_version }}"
+docker_network_name: "awx"
+
+### AWX Default Settings
+admin_user: "admin"
+admin_password: "password"
+awx_secret_key: "awxsecret"
+automation_user: "{{ admin_user }}"
+automation_password: "{{ admin_password }}"
+awx_host: "awx"
+create_preload_data: true
+awx_isolated_nodes: false
+awx_isolated_ssh_keys_external: false
+
+### Postgres DB details
+pg_version: "10"
+pg_hostname: "postgres"
+pg_port: "5432"
+pg_username: "awx"
+pg_password: "password"
+pg_database: "database-name"
+
+### Redis details
+redis_version: "6"
+
+### Webhook default settings
+webhook_version: "2.6.9-1"

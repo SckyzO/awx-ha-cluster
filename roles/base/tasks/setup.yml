@@ -1,0 +1,36 @@
+---
+- name: Create Docker repo config
+  template:
+    src: docker-ce.repo.j2
+    dest: "/etc/yum.repos.d/docker-ce.repo"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Clear Yum cache
+  become: true
+
+- name: Install YUM dependencies
+  yum:
+    name: "{{ dependencies.pkg }}"
+  become: true
+
+- name: Create Bash Docker completion
+  template:
+    src: docker-compose.j2
+    dest: /etc/bash_completion.d/docker-compose
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: Install Python dependencies
+  pip:
+    name: "{{ dependencies.pip }}"
+  become: true
+
+- name: Starting Docker services
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
+  become: true

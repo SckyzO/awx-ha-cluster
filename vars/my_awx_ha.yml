@@ -1,0 +1,24 @@
+## AWX Setting
+enable_webhooks: "no"
+create_preload_data: false # Creation of demonstration configuration
+awx_version: "15.1.0"
+docker_network_name: "awx"
+awx_host: "awx.example.lab"
+compose_dir: "/app/docker"
+
+## Credentials AWX Settings
+## Here is variables from HashiCorp Vault. They can be crypted with ansible vault or in plain text.
+admin_user: "admin" 
+admin_password: "SecurePassword"
+awx_secret_key: "please_create_an_awx_secret_key" 
+broadcast_websocket_secret: "please_create_a_websocket_secret_key"
+
+#### Postgres DB details
+external_database: "no"
+pg_version: "10"
+pg_hostname: "postgres"
+pg_port: "5432"
+pg_username: "awx"
+pg_password: "password"
+pg_database: "awx"
+
