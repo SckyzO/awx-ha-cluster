@@ -26,7 +26,7 @@ We need 3 AWX servers and 1 postgreSQL server, with ip adress and accessible by 
 I recommend using a front-end proxy which will take care of the load balancing. (Traefik, Nginx ...), and have a domain name with SSL Let's encrypt. 
 With Traefik you can configure a Load Balancer with Round-Robin. (I use this personally)
 
-![AWX HA Cluster](screenshot/awx_ha_cluster.png)
+![AWX HA Cluster](screenshot/awx-ha-cluster.png)
 
 ### Create your inventory
 
