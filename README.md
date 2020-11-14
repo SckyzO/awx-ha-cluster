@@ -141,5 +141,5 @@ ansible -i inventory/awx_ha_server all -a "docker rmi awx_web_img_id awx_task_im
 - [ ] Create AWX HA without SSL
 - [ ] Automate the generation of the SSL key
 - [ ] For dev only, add option to deploy AWX HA on a single server
-- [ ] Enable "Isolated" function
+- [ ] Enable "Isolated nodes" function [Understanding Ansible Tower Isolated Nodes](https://developers.redhat.com/blog/2017/12/20/understanding-ansible-tower-isolated-nodes/)
 - [ ] Continue cleaning the original code [source](https://github.com/fitbeard/awx-ha-cluster)
