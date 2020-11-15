@@ -4,6 +4,11 @@
 
 Why this repository ? For the needs of a client I had to configure an AWX cluster in HA. And rather than keeping everything to myself, you know me, open source remains open source, I share my work with you. The installation or configuration may still have problems. Do not hesitate to open issues so that I correct this.
 
+## Official documentation
+
+- [AWX Clustering](https://github.com/ansible/awx/blob/devel/docs/clustering.md)
+- [Ansible Tower Clustering](https://docs.ansible.com/ansible-tower/latest/html/administration/clustering.html)
+
 ## AWX configuration and deployment
 
 Compatible with AWX : 
@@ -72,32 +77,6 @@ Check servers connections
 ansible -m ping -i inventory/awx_ha_server all
 ```
 
-Sortie attendue
-
-```yaml
-awx01 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-awx03 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-awx02 | SUCCESS => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": false,
-    "ping": "pong"
-}
-```
-
 Initialise AWX files and environement
 
 ```bash
@@ -136,6 +115,16 @@ ansible-playbook -i inventory/awx_ha_server -e @vars/my_awx_ha.yml --tags awx aw
 ```bash
 ansible -i inventory/awx_ha_server all -a "docker rmi awx_web_img_id awx_task_img_id"
 ```
+
+### Performance Testing
+
+Performance testing should be twofold:
+- A large volume of simultaneous jobs
+- Jobs that generate a large amount of output
+
+These should also be benchmarked against the same playbooks using the 3.0.X Tower release and a stable Ansible version. For a large volume playbook (e.g., against 100+ hosts), something like the following is recommended:
+
+https://gist.github.com/michelleperz/fe3a0eb4eda888221229730e34b28b89
 
 ## TODO
 - [ ] Create AWX HA without SSL
