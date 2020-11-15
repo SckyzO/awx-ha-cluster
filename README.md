@@ -22,14 +22,14 @@ Compatible with AWX :
 - CentOS 7, RedHat 7
 - EPEL
 - Ansible 2.9+
-- Docker only (not try with podman)
+- Docker
 
 ### Target architecture
 
 We need 3 AWX servers and 1 postgreSQL server, with ip adress and accessible by SSH. 
 
 I recommend using a front-end proxy which will take care of the load balancing. (Traefik, Nginx ...), and have a domain name with SSL Let's encrypt. 
-With Traefik you can configure a Load Balancer with Round-Robin. (I use this personally)
+With Traefik you can configure a Load Balancer with Round-Robin. (I use this personally). I share with you my traefik settings (in traefik folder 🎉)
 
 ![AWX HA Cluster](screenshot/awx-ha-cluster.png)
 
@@ -39,7 +39,7 @@ Create your own inventory as you can find in `inventory/awx_ha_server` (it is an
 
 ### Generate certificate for Nginx
 
-For communication, I prefer to use SSL. It's not mandatory. But I have write a version without SSL. (in todo list😅)
+Generate a SSL certificate. 
 
 ```bash
 openssl genrsa -out server.key 2048
